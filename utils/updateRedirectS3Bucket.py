@@ -1,7 +1,7 @@
 from utils.aws.s3.UpdateS3Bucket import UpdateS3Bucket
 from utils.myComputer.MyComputer import MyComputer
 
-import sys, getopt
+import sys
 
 
 def main(awsProfile,bucketName, port):

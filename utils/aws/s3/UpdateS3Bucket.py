@@ -1,5 +1,5 @@
 import boto3
-
+import sys
 
 class UpdateS3Bucket:
     def __init__(self, bucketName, profile="default"):
