@@ -21,5 +21,5 @@ class UpdateS3Bucket:
 
 
 if __name__ == '__main__':
-    updateS3Bucket = UpdateS3Bucket("piaware.riteshpripatel.com", "updateHomeIpAddress")
+    updateS3Bucket = UpdateS3Bucket(sys.argv[1], sys.argv[2])
     updateS3Bucket.updateWithRedirectHostName("myHostName")
