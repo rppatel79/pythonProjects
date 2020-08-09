@@ -14,7 +14,7 @@ class UpdateS3Bucket:
     def updateWithRedirectHostName(self, redirectHostName)-> object:
         config = {
             'RedirectAllRequestsTo': {
-                'HostName': "redirectHostName"
+                'HostName': redirectHostName
             }
         }
         return self.updateWithConfig(config)
