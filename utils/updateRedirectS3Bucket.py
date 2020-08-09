@@ -5,14 +5,10 @@ import sys
 
 
 def main(awsProfile,bucketName, port):
-    print("bucketName:"+bucketName)
-    print("port"+port)
-
     try:
         myComputer = MyComputer()
         updateS3Bucket = UpdateS3Bucket(bucketName,awsProfile)
-        hostname=myComputer.getExternalIp()+port
-        print()
+        hostname=myComputer.getExternalIp()+":"+port
         response = updateS3Bucket.updateWithRedirectHostName(hostname)
         print(response)
     except Exception as e:

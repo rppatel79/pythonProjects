@@ -17,6 +17,8 @@ class UpdateS3Bucket:
                 'HostName': redirectHostName
             }
         }
+        print("Updating bucket ["+self.bucketName+"] to ["+redirectHostName+"]")
+
         return self.updateWithConfig(config)
 
 
