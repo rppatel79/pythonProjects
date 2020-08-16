@@ -41,3 +41,12 @@ for playerId in range(1, PLAYERS + 1):
         print("Player[" + str(playerId) + "] -Your games are over- Your total score was [" + str(player1Tries) + "]")
     else:
         print("Player[" + str(playerId) + "] -Your games are over- Your total score was [" + str(player2Tries) + "]")
+
+# Check which score is higher, and then congratulate that player
+
+if player1Tries == player2Tries:
+    print("TIE")
+elif player1Tries>player2Tries:
+    print("player 2 wins")
+else:
+    print("player 1 wins")
