@@ -27,8 +27,11 @@ for playerId in range(1, PLAYERS + 1):
             if humanGuess == computerGuess:
                 print("You guessed right!!")
             else:
-                print("You loser, try again.")
                 humanTriesInAGame += 1
+                if humanGuess < computerGuess:
+                    print ("higher")
+                else:
+                    print ("lower")
 
         print("Player["+str(playerId)+"]-Game [" + str(gameId) + "] over")
 
