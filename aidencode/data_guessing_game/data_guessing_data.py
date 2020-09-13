@@ -5,10 +5,10 @@ with open('resources/data.csv') as csv_file:
     line_count = 0
     for row in csv_reader:
         if line_count == 0:
-            print(f'Column names are {", ".join(row)}')
+            print("Column names are {", row,"}")
             line_count += 1
         else:
-        print(f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
+            print("Row[",line_count,"] has the value:",row)
         line_count += 1
 
-    print(f'Processed {line_count} lines.')
+    print('Processed {line_count} lines.')
