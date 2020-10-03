@@ -1,6 +1,6 @@
-name,favorite color,gender,hair length,species
-aiden,blue,m,medium,human
-ash,red,m,medium,human
-mom,purple,f,long,human
-dad,black,m,medium,human
-widget,blue,m,long,cat
+name,favorite color,gender,hair length,species,favorite book
+aiden,blue,m,medium,human,Harry Potter
+ash,red,m,medium,human,Unknown
+mom,purple,f,long,human,Harry Potter
+dad,black,m,medium,human,Freakonomics
+widget,blue,m,long,cat,Cat can do

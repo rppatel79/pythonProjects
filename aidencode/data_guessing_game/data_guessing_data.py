@@ -1,14 +1,8 @@
 import csv
+# Load the Pandas libraries with alias 'pd'
+import pandas as pd
 
-with open('resources/data.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    line_count = 0
-    for row in csv_reader:
-        if line_count == 0:
-            print("Column names are {", row,"}")
-            line_count += 1
-        else:
-            print("Row[",line_count,"] has the value:",row)
-        line_count += 1
+df = pd.read_csv("resources/data.csv")
+print(df)
 
-    print('Processed {line_count} lines.')
+#df.columns
