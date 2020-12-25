@@ -13,7 +13,7 @@ def main():
     local_resource=sys.argv[2]
     aws_access_key=sys.argv[3]
     aws_access_secret=sys.argv[4]
-    local_path=sys.argv[5]
+    remote_path=sys.argv[5]
 
     session = boto3.Session(
         aws_access_key_id=aws_access_key,
@@ -22,9 +22,9 @@ def main():
     client = session.client('s3')
 
     response = client.upload_file(
-        Filename=local_path,
+        Filename=local_resource,
         Bucket=bucket_name,
-        Key=local_resource
+        Key=remote_path
     )
     print ('Done uploading')
 
