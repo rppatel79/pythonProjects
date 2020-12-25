@@ -24,7 +24,8 @@ def main():
     response = client.upload_file(
         Filename=local_resource,
         Bucket=bucket_name,
-        Key=remote_path
+        Key=remote_path,
+        ExtraArgs={'ContentType':'text/html'}
     )
     print ('Done uploading ')
 
