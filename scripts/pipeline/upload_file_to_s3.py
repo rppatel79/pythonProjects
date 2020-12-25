@@ -26,7 +26,7 @@ def main():
         Bucket=bucket_name,
         Key=remote_path
     )
-    print ('Done uploading')
+    print ('Done uploading '+response)
 
 
 main()
