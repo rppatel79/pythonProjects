@@ -7,7 +7,7 @@ local_path=$5
 # Install required dependencies for Python script.
 pip3 install boto3
 
-ls -ltr $local_resource
+more $local_resource
 
 # Run upload script
 python3 scripts/pipeline/upload_file_to_s3.py $bucket_name $local_resource $aws_access_key $aws_access_secret $local_path
