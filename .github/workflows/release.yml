@@ -1,4 +1,4 @@
-name: ReleaseCI
+name: Release.aiden.riteshpripatel.com
 on:
   push:
     branches:
