@@ -9,4 +9,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Release to S3
-      run: bash scripts/pipeline/release.sh aidenscratchprojects.riteshpripatel.com aidencode/html/aiden/index.html ${{secrets.AWS_ACCESS_KEY}} ${{secrets.AWS_ACCESS_SECRET}} "index.html"
+      run: bash scripts/pipeline/release.sh aidenscratchprojects.riteshpripatel.com aidencode/html/aiden/index.html ${{secrets.AWS_ACCESS_KEY}} ${{secrets.AWS_ACCESS_SECRET}} "/"
