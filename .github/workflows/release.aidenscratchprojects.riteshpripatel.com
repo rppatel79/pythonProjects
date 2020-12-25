@@ -1,4 +1,4 @@
-name: Release.aidenscratchprojects.riteshpripatel.com
+name: release.aidenscratchprojects.riteshpripatel.com
 on:
   push:
     branches:
