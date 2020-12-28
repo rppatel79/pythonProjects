@@ -19,9 +19,9 @@ def update_sense_hat(rowId, rowValues, colour):
     rowValues - a string of length of 8.  The values are either 0 or 1
     colours -- an array 3 number representing RBG colours
         """
-    for colIdx in range(0, len(rowValues)):
-        x = colour if rowValues[colIdx] == "1" else (0, 0, 0)
-        sense.set_pixel(colIdx, rowId, x)
+    for colId in (range(0,len(rowValues))):
+        x = colour if rowValues[7-colId] == "1" else (0, 0, 0)
+        sense.set_pixel(rowId,colId, x)
 
 
 def start():
@@ -34,19 +34,19 @@ def start():
     while True:
         now = datetime.now()
 
-        print("-------------------------------------------")
-        print("now =", now)
-        print("-------------------------------------------")
+#        print("-------------------------------------------")
+#        print("now =", now)
+#        print("-------------------------------------------")
 
-        print("month 0=", pad_for_led(decimal_to_binary(now.month)))
-        print("day 1=", pad_for_led(decimal_to_binary(now.day)))
-        print("hour 2=", pad_for_led(decimal_to_binary(now.hour if now.hour <= 12 else now.hour - 12)))
-        print("minute 3=", pad_for_led(decimal_to_binary(now.minute)))
-        print("seconds 4=", pad_for_led(decimal_to_binary(now.second)))
-        print("microsecond 4=", pad_for_led(decimal_to_binary(int((now.microsecond / 10 ** 6) * 255))))
-        print("am/pm 6=", pad_for_led((0 if now.hour < 12 else 1)))
+#        print("month 0=", pad_for_led(decimal_to_binary(now.month)))
+#        print("day 1=", pad_for_led(decimal_to_binary(now.day)))
+#        print("hour 2=", pad_for_led(decimal_to_binary(now.hour if now.hour <= 12 else now.hour - 12)))
+#        print("minute 3=", pad_for_led(decimal_to_binary(now.minute)))
+#        print("seconds 4=", pad_for_led(decimal_to_binary(now.second)))
+#        print("microsecond 4=", pad_for_led(decimal_to_binary(int((now.microsecond / 10 ** 6) * 255))))
+#        print("am/pm 6=", pad_for_led((0 if now.hour < 12 else 1)))
 
-        print("-------------------------------------------")
+#        print("-------------------------------------------")
 
         # calendar date
         calendar_colour = (0, 0, 255)
