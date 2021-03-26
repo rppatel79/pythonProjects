@@ -1,12 +1,27 @@
 <!DOCTYPE html>
+<script>
+    function myFunction() {
+
+        var elements = document.getElementById("my-form").elements;
+
+        score =0
+        for (var i = 0, element; element = elements[i++];) {
+           if (element.id === element.value )
+                score = score +1
+        }
+
+        document.getElementById("demo").style.color = "red";
+        document.getElementById("demo").innerHTML = score;
+    }
+</script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Aiden Projects|Spelling Test!</title>
+    <title>Aiden Projects | Spelling Test!</title>
 </head>
     <body>
         <p><h2>Spelling Test!</h2></p>
-    </body>
+<form id="my-form">
       <table border = "1">
          <tr>
             <td>1</td>
@@ -22,5 +37,10 @@
             </td>
             <td><input id="boil" value=""/></td>
           </tr>
+          <tr><td colspan="3"> </td> </tr>
       </table>
+        <p id="score" value=""></p>
+        <p id="demo" onclick="myFunction()">Click me to change my text color.</p>
+    </form>
+    </body>
 </html>
