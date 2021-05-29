@@ -9,6 +9,12 @@ import torch
 tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-large")
 model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
 
+app = Flask(__name__)
+SESSION_TYPE = 'filesystem'
+app.config.from_object(__name__)
+Session(app)
+
+
 @app.route('/chat/<msg>')
 def chat(msg):
     print(msg)
@@ -33,8 +39,5 @@ def chat(msg):
 
     return json.dumps({'response': response})
 
-app = Flask(__name__)
-SESSION_TYPE = 'filesystem'
-app.config.from_object(__name__)
-Session(app)
+
 app.run(port=8080)
