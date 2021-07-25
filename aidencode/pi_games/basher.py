@@ -19,7 +19,7 @@ def move_marble(pitch,roll,x,y):
 
 	return new_x,new_y
 
-def make_food(num_of_food):
+def make_food(hat_grid,b,food_color,num_of_food):
 	for i in range(0,num_of_food):
 		x=-1
 		y=-1
@@ -28,55 +28,59 @@ def make_food(num_of_food):
 			y=randrange(7)
 		hat_grid[y][x]=food_color
 
-sense = SenseHat()
-sense.clear()
+def start():
+	sense = SenseHat()
+	sense.clear()
 
-ball_color = (255,255,255)
-food_color = (220,125,0)
+	ball_color = (255,255,255)
+	food_color = (220,125,0)
 
-b = (0,0,0)
+	b = (0,0,0)
 
-game_over = False
+	game_over = False
 
-ball_x_position =4
-ball_y_position =4
+	ball_x_position =4
+	ball_y_position =4
 
-hat_grid = [[b,b,b,b,b,b,b,b],
-         [b,b,b,b,b,b,b,b],
-         [b,b,b,b,b,b,b,b],
-         [b,b,b,b,b,b,b,b],
-         [b,b,b,b,b,b,b,b],
-         [b,b,b,b,b,b,b,b],
-         [b,b,b,b,b,b,b,b],
-         [b,b,b,b,b,b,b,b]]
+	hat_grid = [[b,b,b,b,b,b,b,b],
+		[b,b,b,b,b,b,b,b],
+		[b,b,b,b,b,b,b,b],
+		[b,b,b,b,b,b,b,b],
+		[b,b,b,b,b,b,b,b],
+		[b,b,b,b,b,b,b,b],
+		[b,b,b,b,b,b,b,b],
+		[b,b,b,b,b,b,b,b]]
 
-num_of_food =10
-make_food(num_of_food)
+	num_of_food =10
+	make_food(hat_grid,b,food_color,num_of_food)
 
-score=0
+	score=0
 
-while not game_over:
-	o = sense.get_orientation()
-	pitch = o["pitch"]
-	roll = o["roll"]
-	yaw = o["yaw"]
+	while not game_over:
+		o = sense.get_orientation()
+		pitch = o["pitch"]
+		roll = o["roll"]
+		yaw = o["yaw"]
 
-	new_ball_x_position,new_ball_y_position = move_marble(pitch,roll,ball_x_position,ball_y_position)
+		new_ball_x_position,new_ball_y_position = move_marble(pitch,roll,ball_x_position,ball_y_position)
 
-	if hat_grid[new_ball_y_position][new_ball_x_position] == food_color:
-		score = score +1
+		if hat_grid[new_ball_y_position][new_ball_x_position] == food_color:
+			score = score +1
 
-	hat_grid[ball_y_position][ball_x_position]=b
-	sense.set_pixels(sum(hat_grid,[]))
+		hat_grid[ball_y_position][ball_x_position]=b
+		sense.set_pixels(sum(hat_grid,[]))
 
-	hat_grid[new_ball_y_position][new_ball_x_position]=ball_color
-	sense.set_pixels(sum(hat_grid,[]))
+		hat_grid[new_ball_y_position][new_ball_x_position]=ball_color
+		sense.set_pixels(sum(hat_grid,[]))
 
-	time.sleep(0.05)
-	ball_y_position = new_ball_y_position
-	ball_x_position = new_ball_x_position
+		time.sleep(0.05)
+		ball_y_position = new_ball_y_position
+		ball_x_position = new_ball_x_position
 
-	if score == num_of_food:
-		game_over=True
+		if score == num_of_food:
+			game_over=True
 
-sense.show_message("You WIN!!")
+	sense.show_message("You WIN!!")
+
+if __name__ == "__main__":
+	start()
