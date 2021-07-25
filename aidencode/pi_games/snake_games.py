@@ -4,17 +4,8 @@ from random import randint
 import time
 import print_sensehat_number
 
-sense = SenseHat()
 
-direction = "right"
-
-blank = (0,0,0)
-snake_color = (255,0,255)
-fruit_color = (255,100,0)
-
-
-def make_fruit(position,fruit_position,color):
-
+def make_fruit(sense,position,fruit_position,fruit_color):
 	fruit_position[0] = randint(0,7)
 	fruit_position[1] = randint(0,7)
 	while fruit_position in position:
@@ -24,18 +15,13 @@ def make_fruit(position,fruit_position,color):
 	sense.set_pixel(fruit_position[0],fruit_position[1],fruit_color)
 
 
-def draw_snake(position,color):
+def draw_snake(sense,position,color):
 	for cell in position:
 		sense.set_pixel(cell[0],cell[1],color)
 
-def joystick_start_game(event):
-	global has_click_middle_button
-
-	has_click_middle_button = True
-	print('You clicked in the middle')
-
 def joystick_moved(event):
 	global direction
+	global snake_position
 
 	direction = event.direction
 	print(direction)
@@ -43,6 +29,7 @@ def joystick_moved(event):
 
 def move_snake(position,fruit_position,direction):
 	global score
+	global sense
 
 	if direction == "right":
 		print("right")
@@ -98,46 +85,45 @@ def move_snake(position,fruit_position,direction):
 	if position[0] == fruit_position:
 		score = score +1
 		print("Your score is: "+str(score))
-		make_fruit(position,fruit_position,fruit_color)
+		make_fruit(sense,position,fruit_position,fruit_color)
 
-score =0
-snake_position = [[2, 4],
-         [3, 4],
-	 [4, 4]]
+#Global Variables
+snake_position = [[2, 4], [3, 4], [4, 4]]
 fruit_position=[-1,-1]
+score =0
+sense = SenseHat()
 
-sense.clear()
+blank = (0,0,0)
+snake_color = (255,0,255)
+fruit_color = (255,100,0)
 
-has_click_middle_button = False
+def start():
+	sense.clear()
 
-while True:
-	sense.stick.direction_any =joystick_start_game 
-
-	# wait for the users to click the middle button
-	# TODO:  THIS CODE SHOULD BE REPLACE WITH AN EVENT
-	while not has_click_middle_button:
-		time.sleep(5)
-
-	#reset the game
-	has_click_middle_button = False
-	score =0
-	draw_snake(snake_position,snake_color)
-	make_fruit(snake_position,fruit_position,fruit_color)
-	time.sleep(1)
-
-	sense.stick.direction_any = joystick_moved
-
-	game_time_sec =30
-	start_time= time.perf_counter()
-
-	while time.perf_counter()-start_time < game_time_sec:
+	gameOver = False
+	while not gameOver:
+		#reset the game
+		draw_snake(sense,snake_position,snake_color)
+		make_fruit(sense,snake_position,fruit_position,fruit_color)
 		time.sleep(1)
 
-	print ("Times UP!!")
+		sense.stick.direction_any = joystick_moved
 
-	sense.clear()
-	for i in range(0,3):
-		print_sensehat_number.show_number(score, 200,0,60)
-		time.sleep(0.4)
+		game_time_sec =30
+		start_time= time.perf_counter()
+
+		while time.perf_counter()-start_time < game_time_sec:
+			time.sleep(1)
+
+		print ("Times UP!!")
+
 		sense.clear()
-		time.sleep(0.4)
+		for i in range(0,3):
+			print_sensehat_number.show_number(score, 200,0,60)
+			time.sleep(0.4)
+			sense.clear()
+			time.sleep(0.4)
+			gameOver = True
+
+if __name__ == "__main__":
+	start()
