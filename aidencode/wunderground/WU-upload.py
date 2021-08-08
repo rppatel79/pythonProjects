@@ -1,8 +1,18 @@
 import requests
+import configparser
 from sense_hat import SenseHat
+
+WUurl ="https://weatherstation.wunderground.com/weatherstation/updateweatherstation.php?"
 
 sense = SenseHat()
 sense.clear()
+
+config_file = 'config.txt'
+
+def read_config(property):
+	config = configparser.ConfigParser()
+	config.read_file(open(config_file))
+	return config.get('wunderground',property)
 
 def get_temp():
 	sense.clear()
@@ -17,21 +27,21 @@ def get_humidity():
 	return sense.get_humidity()
 
 def push_results(temperaturef,pressure,humidity):
-	WU_station_id ="TODO"
-	WU_station_pwd ="TODO"
+	WU_station_id =read_config('WU_station_id')
+	WU_station_pwd =read_config('WU_station_pwd')
 	WUcreds = "ID="+ WU_station_id + "&PASSWORD="+ WU_station_pwd
 	date_str = "&dateutc=now"
 	action_str = "&action=updateraw"
 
 	humidity_str = "{0:.2f}".format(humidity)
-	pressure_str = "{0:.2f}".format(pa_to_inches(pressure))
+	pressure_str = "{0:.2f}".format(hpa_to_inches(pressure))
 	tempf_str = "{0:.2f}".format(temperaturef)
 
 	r = requests.get(
 		WUurl +
 		WUcreds +
 		date_str +
-		"&humidity="+humdity_str+
+		"&humidity="+humidity_str+
 		"&tempf="+tempf_str+
 		"&baromin"+pressure_str+
 		action_str)
