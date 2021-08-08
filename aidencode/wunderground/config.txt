@@ -1,0 +1,3 @@
+[wunderground]
+WU_station_id = INSERT_ID_HERE
+WU_station_pwd =INSERT_PASSWORD_HERE
