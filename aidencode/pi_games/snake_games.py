@@ -11,7 +11,7 @@ def make_fruit(sense,position,fruit_position,fruit_color):
 	while fruit_position in position:
 		fruit_position[0] = randint(0,7)
 		fruit_position[1] = randint(0,7)
-	print('Made fruit at:'+str(fruit_position))
+	#print('Made fruit at:'+str(fruit_position))
 	sense.set_pixel(fruit_position[0],fruit_position[1],fruit_color)
 
 
@@ -32,7 +32,7 @@ def move_snake(position,fruit_position,direction):
 	global sense
 
 	if direction == "right":
-		print("right")
+		#print("right")
 		# remove the last element
 		lastPosition = position.pop(len(position)-1)
 		# make the last element white
@@ -44,7 +44,7 @@ def move_snake(position,fruit_position,direction):
 		position.insert(0,newFirstPosition)
 		sense.set_pixel(newFirstPosition[0],newFirstPosition[1],snake_color)
 	elif direction  == "left":
-		print ("left")
+		#print ("left")
 		# remove the last element
 		lastPosition = position.pop(len(position)-1)
 		# make the last element white
@@ -56,7 +56,7 @@ def move_snake(position,fruit_position,direction):
 		position.insert(0,newFirstPosition)
 		sense.set_pixel(newFirstPosition[0],newFirstPosition[1],snake_color)
 	elif direction == "up":
-		print("up")
+		#print("up")
 		# remove the last element
 		lastPosition = position.pop(len(position)-1)
 		# make the last element white
@@ -68,7 +68,7 @@ def move_snake(position,fruit_position,direction):
 		position.insert(0,newFirstPosition)
 		sense.set_pixel(newFirstPosition[0],newFirstPosition[1],snake_color)
 	elif direction == "down":
-		print("down")
+		#print("down")
 		# remove the last element
 		lastPosition = position.pop(len(position)-1)
 		# make the last element white
@@ -98,6 +98,7 @@ snake_color = (255,0,255)
 fruit_color = (255,100,0)
 
 def start():
+	score =0
 	sense.clear()
 
 	gameOver = False
