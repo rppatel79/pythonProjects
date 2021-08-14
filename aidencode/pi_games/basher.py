@@ -21,12 +21,15 @@ def move_marble(pitch,roll,x,y):
 
 def make_food(hat_grid,b,food_color,num_of_food):
 	for i in range(0,num_of_food):
-		x=-1
-		y=-1
-		while hat_grid[y][x] != b:
+		x=randrange(7)
+		y=randrange(7)
+		
+		while hat_grid[y][x] == food_color:
 			x=randrange(7)
 			y=randrange(7)
+
 		hat_grid[y][x]=food_color
+
 
 def start():
 	sense = SenseHat()
@@ -39,8 +42,8 @@ def start():
 
 	game_over = False
 
-	ball_x_position =4
-	ball_y_position =4
+	ball_x_position =7
+	ball_y_position =7
 
 	hat_grid = [[b,b,b,b,b,b,b,b],
 		[b,b,b,b,b,b,b,b],
@@ -54,7 +57,10 @@ def start():
 	num_of_food =10
 	make_food(hat_grid,b,food_color,num_of_food)
 
+	print ("Created ["+str(num_of_food)+"] food")
 	score=0
+
+	sense.set_pixels(sum(hat_grid,[]))
 
 	while not game_over:
 		o = sense.get_orientation()
@@ -68,8 +74,6 @@ def start():
 			score = score +1
 
 		hat_grid[ball_y_position][ball_x_position]=b
-		sense.set_pixels(sum(hat_grid,[]))
-
 		hat_grid[new_ball_y_position][new_ball_x_position]=ball_color
 		sense.set_pixels(sum(hat_grid,[]))
 
