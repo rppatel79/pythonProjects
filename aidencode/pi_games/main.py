@@ -7,7 +7,9 @@ import marble_maze
 sense = SenseHat()
 def main():
 	while True:
-		sense.show_message("Up basher, Left snake, Down-marble maze")
+		sense.stick.direction_any = None
+
+		sense.show_message("UP basher, LEFT snake, DOWN marble maze")
 
 		event = sense.stick.wait_for_event(emptybuffer=True)
 		direction = event.direction
