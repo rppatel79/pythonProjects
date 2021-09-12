@@ -128,4 +128,4 @@ if __name__ == "__main__":
 		sleep_time_min = int(read_config('Sleep_Time_Min'))
 		logging.info ("About to sleep for ["+str(sleep_time_min)+"]")
 		time.sleep(sleep_time_min*60)
-		logging.info(c_to_f(get_temp()),get_pressure(),get_humidity())
+		push_results(c_to_f(get_temp()),get_pressure(),get_humidity())
