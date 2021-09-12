@@ -2,7 +2,17 @@ import requests
 import time
 import os
 import configparser
+import logging
+import sys
 from sense_hat import SenseHat
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 
 WUurl ="https://weatherstation.wunderground.com/weatherstation/updateweatherstation.php?"
 
@@ -93,7 +103,7 @@ def push_results(temperaturef,pressure,humidity):
 	tempf_str = "{0:.2f}".format(temperaturef)
 
 	query_str="&humidity="+humidity_str+"&tempf="+tempf_str+"&baromin"+pressure_str+action_str
-	print("Uploading query str["+query_str+"]")
+	logging.debug("Uploading query str["+query_str+"]")
 
 	upload_to_wunderground = True
 	
@@ -103,7 +113,7 @@ def push_results(temperaturef,pressure,humidity):
 			WUcreds +
 			date_str +
 			query_str)
-		print("Received " +str(r.status_code)+" "+str(r.text))
+		logging.info("Received " +str(r.status_code)+" "+str(r.text))
 
 def hpa_to_inches(pressure_in_hpa):
 	pressure_in_inches_of_m = pressure_in_hpa * 0.02953
@@ -116,6 +126,6 @@ def kmh_to_mph(speed_in_kmh):
 if __name__ == "__main__":
 	while True:
 		sleep_time_min = int(read_config('Sleep_Time_Min'))
-		print ("About to sleep for ["+str(sleep_time_min)+"]",flush=True)
+		logging.info ("About to sleep for ["+str(sleep_time_min)+"]")
 		time.sleep(sleep_time_min*60)
-		push_results(c_to_f(get_temp()),get_pressure(),get_humidity())
+		logging.info(c_to_f(get_temp()),get_pressure(),get_humidity())
