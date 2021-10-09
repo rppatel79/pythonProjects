@@ -1,0 +1,12 @@
+name: release.ashwin.riteshpripatel.com
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Release to S3
+      run: bash scripts/pipeline/release.sh ashwin.riteshpripatel.com aidencode/html/ashwin/index.html ${{secrets.AWS_ACCESS_KEY}} ${{secrets.AWS_ACCESS_SECRET}} "index.html"
