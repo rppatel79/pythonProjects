@@ -16,5 +16,5 @@ python -m pip install -r requirements.txt
 
 ##Run the flask container
 cd pythonProjects/aidencode/chatbot
-source chatbot-env/bin/activate
+source env/bin/activate
 python3 myFlaskedBot.py
