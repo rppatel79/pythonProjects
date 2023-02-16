@@ -1,5 +1,5 @@
 cachelib==0.10.1
-certifi==2020.12.5
+certifi==2022.12.7
 chardet==4.0.0
 click==7.1.2
 filelock==3.9.0
@@ -12,7 +12,7 @@ joblib==1.2.0
 MarkupSafe==2.1.2
 numpy==1.22.0
 packaging==20.9
-Pillow==9.0.1
+Pillow==9.3.0
 pyparsing==2.4.7
 regex==2021.4.4
 requests==2.25.1
