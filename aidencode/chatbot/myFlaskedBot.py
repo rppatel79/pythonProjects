@@ -2,7 +2,7 @@
 # encoding: utf-8
 import json
 from flask import Flask, session
-from flask_session import Session
+from flask_session.__init__ import Session
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
