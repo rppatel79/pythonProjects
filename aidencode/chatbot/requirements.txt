@@ -15,7 +15,7 @@ packaging==20.9
 Pillow==10.3.0
 pyparsing==2.4.7
 regex==2021.4.4
-requests==2.31.0
+requests==2.32.0
 sacremoses==0.0.45
 six==1.15.0
 tokenizers==0.13.2
